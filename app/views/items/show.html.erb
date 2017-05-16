@@ -1,0 +1,22 @@
+<% provide(:title, @item.itemname) %>
+<div class="row">
+    <section class="item_info">
+      <h1>
+        <%= @item.itemname %>
+      </h1>
+
+	  <div>
+	  	<% @pictures.each do |picture|%>
+	  		<%= link_to image_tag(picture.image_url(:med)), picture.image_url%>
+	  	<%end%>
+	  </div>
+	  
+	  <h3>Price: <%= @item.price%></h3>
+	  <h3>Category: <%= @item.category%></h3>
+	  
+	  <p>Description: <%= @item.description%></p>
+	  
+	  <h2><%= link_to 'Purchase', purchase_path%></h2>
+	  
+    </section>
+</div>

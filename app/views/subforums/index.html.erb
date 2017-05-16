@@ -1,0 +1,31 @@
+<% provide(:title, "#{@forum.forumname}'s Subforums") %>
+
+<p id="notice"><%= notice %></p>
+
+<div class="planetsideheader">
+<h1><%=@forum.forumname%> Forum</h1>
+<h2>
+	<% if logged_in? && current_user.admin? %>
+    <%= link_to "Create Subforum", new_forum_subforum_path(@forum) %>
+  <% end %>
+</h2>
+</div>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Subforum</th>
+      <th>Newest Post</th>
+      <th></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+	
+	<%= render @subforums%>
+	<%= paginate @subforums%>
+	
+</table>
+
+<br>
+

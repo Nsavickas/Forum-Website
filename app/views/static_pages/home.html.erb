@@ -1,0 +1,24 @@
+
+<div class="center jumbotron">
+  <h1>Welcome to the Negus Gaming Clan</h1>
+  <h2>Negus Quote of the Day: 
+  <%= get_random_welcome()%>	
+  </h2>
+
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+  
+  <h2 id="chooseGame">Choose Your Game!</h2>
+  
+  <div id="GameLinks">
+  <%= link_to image_tag("nc.jpg", :width => 240, :height => 240, 
+  :border => 0), {:action => 'planetside2', :controller => 'static_pages'}, 
+  {:class => "gamelogos"}%>
+  
+  <%= link_to image_tag("zombslogo.jpg", :width => 240, :height => 240, 
+  :border => 0), {:action => 'nazizombies', :controller => 'static_pages'}, 
+  {:class => "gamelogos", :id => "nz-logo"}%>
+  </div>  
+  
+</div>
+
+

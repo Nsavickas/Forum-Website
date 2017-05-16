@@ -1,0 +1,31 @@
+<% provide(:title, 'Edit item') %>
+<h1>Edit item</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @item, :html => { :class => 'form-horizontal', multipart: true } do |f| %>
+  
+      <%= f.label :itemname, 'Item Name' %>
+      <%= f.text_field :itemname, class: 'form-control' %>
+      
+      <%= f.label :category, 'Item Category' %>
+      <%= f.text_field :category, class: 'form-control' %>
+      
+      <%= f.label :price, 'Item Price' %>
+      <%= f.number_field :price, class: 'form-control' %>
+      
+      <%= f.label :stock, 'Stock' %>
+      <%= f.number_field :stock, class: 'form-control' %>
+      
+      <%= f.label :description, 'Item Description' %>
+      <%= f.text_field :description, class: 'form-control' %>
+
+      <%= f.label :pictures, class: 'control-label' %>
+	  <%= file_field_tag "images[]", type: :file, multiple: true, class: 'form-control' %>
+
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+	                items_path, :class => 'btn btn-mini' %>
+    <% end %>
+  </div>
+</div>

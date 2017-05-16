@@ -1,0 +1,44 @@
+<tr>
+	<td class="subforum_post">
+		<%= div_for(post) do %>
+			<%= link_to post.postname, post_path(post), class: 'tooltips', 
+			title: "#{post.content}", data: { toggle: 'tooltip', placement: 'top'} %>
+		<%end%>
+	</td>
+	
+	<td class="user_info">
+		<div class="last_post">
+    	  <%if post.comments.last%>
+    	  	<div>By: <%= link_to post.comments.last.user_name, post.comments.last.user %> 
+    	    <%= distance_of_time_in_words_to_now post.comments.last.created_at%> ago</div> 
+  	  	<%else%>
+  	  		No comments
+  	  	<%end%>
+		</div>
+		<div>
+			Total Comments: <%= post.total_comments %> <br />
+		</div>
+	</td>
+	
+	<td>
+		<div class="misc">
+			<% if logged_in? && current_user.admin?%>
+				<%= button_to 'Toggle Sticky', post_toggle_path(post), class: "btn btn-sm"%>
+			<%end%>
+			
+			<div class="sticky-icon">
+				<%if post.sticky == true%>
+					Stickied <br />
+				<%else%>
+					Unstickied <br />
+				<%end%>
+			</div>
+			
+			<% if logged_in? && (current_user.admin? || (current_user == post.user)) %>
+    	  <%#= button_to "Unsticky", unsticky_path %>
+    	  <%= link_to 'Edit', edit_post_path(post) %>
+      	<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>     	
+	  	<%end%>
+	  </div>
+	</td>
+</tr>

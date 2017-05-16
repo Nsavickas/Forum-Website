@@ -1,0 +1,93 @@
+<% provide(:title, @subforum.subforumname) %>
+
+<h1>
+  <%= @subforum.subforumname %>
+</h1>
+<h2>
+	<% if logged_in? %>
+  <%= link_to "Create Post", new_subforum_post_path(@subforum, @post) %>
+  <% end %>
+</h2>
+
+<table>
+	<thead>
+		<tr>
+	    <th>Post</th>
+	    <th>Last Comment</th>
+	    <th></th>
+	    <th colspan="3"></th>
+	  </tr>
+	</thead>
+	
+	<tbody>
+		<% @subforum.posts.each do |post| %>
+	    <%if post.sticky == true%>
+				<tr>
+					<td class="subforum_post">
+						<%= link_to post.postname, post_path(post) %>
+					</td>
+					
+					<td class="user_info">
+						<div class="last_post">
+			      	  <%#= link_to 'Index', subforum_posts_path(post.subforum)%>
+			      	  <%#= link_to 'Comment', new_post_comment_path(post) %>
+			      	  <% if post.comments.last != nil%>
+			      	  <div>By: <%= link_to post.comments.last.user.name, post.comments.last.user %> 
+			      	  	<%= distance_of_time_in_words_to_now post.comments.last.created_at%> ago</div> 
+		      	  	<%else%>
+		      	  		No comments
+		      	  	<%end%>
+						</div>
+					</td>
+					
+					<td>
+						<div class="misc">
+							Stickied <br />
+							<% if current_user.admin? || (current_user == post.user) %>
+			      	  <%#= button_to "Unsticky", unsticky_path %>
+			      	  <%= link_to 'Edit', edit_post_path(post) %>
+				      	<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>     	
+	      	  	<%end%>
+					  </div>
+					</td>
+				</tr>
+			<%end%>
+		<%end%>
+		
+		<% @subforum.posts.order("created_at DESC").each do |post|  %>
+	    <%if post.sticky == false%>
+				<tr>
+					<td class="subforum_post">
+						<%= link_to post.postname, post_path(post) %>
+					</td>
+					
+					<td class="user_info">
+						<div class="last_post">
+							<% if logged_in?%>
+			      	  <%#= link_to 'Index', subforum_posts_path(post.subforum)%>
+			      	  <%#= link_to 'Comment', new_post_comment_path(post) %>
+			      	  <% if post.comments.last != nil%>
+			      	  <div>By: <%= link_to post.comments.last.user.name, post.comments.last.user %> 
+			      	  	<%= distance_of_time_in_words_to_now post.comments.last.created_at%> ago</div> 
+		      	  	<%else%>
+		      	  		No comments
+		      	  	<%end%>
+	      	  	<%end%>
+						</div>
+					</td>
+					
+					<td>
+						<div class="misc">
+							Unstickied <br />
+							<% if logged_in? && current_user.admin? %>
+			      	  <%#= button_to "Unsticky", unsticky_path %>
+			      	  <%= link_to 'Edit', edit_post_path(post) %>
+				      	<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>     	
+	      	  	<%end%>
+					  </div>
+					</td>
+				</tr>
+			<%end%>
+		<%end%>
+	</tbody>
+</table>

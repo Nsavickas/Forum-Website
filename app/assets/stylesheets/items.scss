@@ -1,0 +1,27 @@
+// Place all the styles related to the items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.item-search {
+	form {
+		input {
+			width: 90%;
+		}
+		select {
+			width: 93%;
+		}
+	}
+	
+	h2 {
+		font: 20pt;
+		color: white;
+		margin: 0px 0px 10px 0px; 
+	}
+	
+}
+
+.item_info {
+	width: 95%;
+	margin-left: 5%;
+}

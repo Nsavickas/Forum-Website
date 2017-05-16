@@ -1,0 +1,57 @@
+<% provide(:title, 'Items') %>
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+	<h1>Merchandise</h1>
+	
+	<% if logged_in? && current_user.admin?%>
+	<h2><%= link_to 'Add Item', new_item_path%></h2>
+	<%end%>
+	
+	<div class="col-md-4">
+		<div class="form-wrapper">
+		<div class="item-search">
+			<h2>Search</h2>
+			<%= form_tag items_path, :method => 'get', :id => 'items_search' do %>
+				<%= label_tag 'Product Name'%>
+				<%= text_field_tag(:itemname, nil, class: 'form-control')%>
+				
+				<%#= label_tag 'Categories'%>
+				<%#= select_tag :category, options_for_select(category_array), :multiple => true, params[:search]%>
+				
+				<%= label_tag 'Max Price'%>
+				<%= number_field_tag(:max_price, nil, :step => 0.01, class: 'form-control')%>
+				
+				<%= label_tag 'Minimum Price'%>
+				<%= number_field_tag(:min_price, nil, :step => 0.01, class: 'form-control')%>
+				<%= submit_tag("Search", class: 'btn btn-primary btn-sm')%>
+			<%end%>	 
+		</div>
+		</div>
+	</div>
+	
+	<div class="col-md-8">
+		<table>
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th>Price</th>
+					<th></th>
+					<th colspan="3"></th>
+				</tr>
+			</thead>
+			
+		  <tbody>
+		  	<%if @items%>
+		  		<%@items.each do |item|%>
+		  			<%=render item%>
+		  		<%end%>
+		  	<%end%>  
+		  </tbody>
+		  
+		  <%#= paginate @items%>
+		</table>
+	</div>
+</div>
+
+

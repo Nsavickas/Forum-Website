@@ -1,0 +1,51 @@
+// Place all the styles related to the friendships controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.friendship-nav {
+	padding-left: 20px;
+	input {
+		width: 30%;
+	}
+}
+
+.friend-container {
+	padding: 0px 20px 40px 20px;
+	h2 {
+		color: white;
+	}
+	
+	.col-md-4 {
+		img {
+			height: 80px;
+			width: 80px;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		a {
+			display: block;
+			text-align: center;
+			padding: 0px 0px 5px 0px;
+		}
+		input {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			white-space: nowrap;
+			width: auto;
+		}
+	}
+}
+
+
+.unlike-friend {
+	width: 30%;
+	input {
+		margin: 5px 0px 20px 15px;
+		white-space: nowrap;
+		width: auto;
+	}
+}
+

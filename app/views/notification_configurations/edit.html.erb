@@ -1,0 +1,22 @@
+<% provide(:title, "Edit Notification Settings") %>
+<h1>Edit Notification Settings</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @notification_configuration do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      
+      <%= f.label :notify_friendships, 'Receive friendship notifications?'%>
+      <%= f.check_box :notify_friendships, class: 'form-control' %>
+      
+      <%= f.label :notify_comments, 'Receive notifications if your post has been commented on?'%>
+      <%= f.check_box :notify_comments, class: 'form-control' %>
+      
+      <%= f.label :notify_likes, 'Receive notifications if your post or comment has been liked?'%>
+      <%= f.check_box :notify_likes, class: 'form-control' %>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

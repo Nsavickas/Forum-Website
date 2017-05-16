@@ -1,0 +1,32 @@
+#notification-settings-btn {
+	input {
+		white-space: nowrap;
+		width: auto;
+	}
+}
+
+.user_notifications_table {
+	/*margin: 0px 10px 10px 10px;
+	width: 98%;*/
+
+	.title {
+		width: 20%;
+		/*padding-left: 10px;*/
+	}
+	
+	.description {
+		width: 60%;
+	}
+	
+	.created_at {
+		width: 20%;
+	}
+	
+	.unviewed {
+		td {
+			background-color: rgba(194, 194, 163, 0.30);
+		}
+	}
+}
+
+

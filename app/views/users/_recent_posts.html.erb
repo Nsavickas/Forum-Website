@@ -1,0 +1,27 @@
+
+<div>
+	<h1>Recent comments by <%=@user.name%></h1>
+	
+<table class="recent_posts_table">
+  <thead>
+    <tr>
+      <th>Post</th>
+      <th>Content</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  	<% @user_posts.order("created_at DESC").each do |post|%>
+	  	<tr class= "<%= cycle('list_line_odd', 'list_line_even')%>">
+        <td class="post"><%= link_to post.postname, post %></td>
+        <td class="comment"><%= post.content %></td>
+        <td class="created_at"><%= distance_of_time_in_words_to_now post.created_at %> ago</td>
+      </tr>
+		<%end%>
+  </tbody>
+</table>  
+	
+
+</div>

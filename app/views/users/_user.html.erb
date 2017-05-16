@@ -1,0 +1,15 @@
+<li class="user_info">
+  <%#= gravatar_for user, size: 50 %>
+  <%if user.avatar != nil%>
+  	<%= image_tag user.avatar_displaypic.url(:med)%>
+  <%else%>
+  	<%= image_tag 'no_image_icon.jpg'%>
+  <%end%>
+  
+  <%= link_to user.name, user %>
+  <% if current_user.admin? && !current_user?(user) %>
+    | <%= link_to "delete", user, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+
+</li>

@@ -1,0 +1,21 @@
+development:
+  port: 9306
+  bin_path: "C:/Sphinx/bin" 
+  searchd_binary_name: "C:/Sphinx/bin/searchd"
+  indexer_binary_name: "C:/Sphinx/bin/indexer"
+  morphology: stem_en
+
+test:
+  port: 9306
+  morphology: stem_en
+  bin_path: "C:/Sphinx/bin" 
+  searchd_binary_name: "C:/Sphinx/bin/searchd"
+  indexer_binary_name: "C:/Sphinx/bin/indexer"
+
+production:
+  port: 9306
+  morphology: stem_en
+  bin_path: "C:/Sphinx/bin" 
+  searchd_binary_name: "C:/Sphinx/bin/searchd"
+  indexer_binary_name: "C:/Sphinx/bin/indexer"
+  

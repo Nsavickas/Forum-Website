@@ -1,0 +1,2 @@
+$("<%= escape_javascript(render partial: @comment, locals: {like: Like.new} ) %>")
+	.appendTo("#post-" + <%=j @comment.post_id.to_s%> + "-comments");

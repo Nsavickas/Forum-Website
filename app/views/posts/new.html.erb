@@ -1,0 +1,30 @@
+<% provide(:title, 'Create Forum Post') %>
+<h1>Create Post</h1>
+
+<p class="validation-errors"><%= @post.errors.full_messages.first if @post.errors.any? %></p>
+
+<div class="form-wrapper">
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @post, :html => { :class => 'form-horizontal', multipart: true }  do |f| %>
+
+	  <%= f.hidden_field :subforum_id, :value => params[:subforum_id] %>
+	  
+	  <%= f.hidden_field :user_id, :value => current_user.id %>
+
+      <%= f.label :postname, 'Post Name' %>
+      <%= f.text_field :postname, class: 'form-control' %>
+
+      <%= f.label :content %>
+      <%= f.text_field :content, class: 'form-control' %>
+      
+      <%= f.label :pictures, class: 'control-label' %>
+	  <%= file_field_tag "images[]", type: :file, multiple: true, class: 'form-control' %>
+
+      <%= f.submit "Submit Post", class: "btn btn-primary" %>
+    <% end %>
+    
+    <br />
+  </div>
+</div>
+</div>

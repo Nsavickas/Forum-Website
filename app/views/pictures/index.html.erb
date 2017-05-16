@@ -1,0 +1,14 @@
+<% provide(:title, "#{@user.name}'s Photos") %>
+<h1><%=@user.name%>'s Photos</h1>
+
+<div class="picture_gallery">	
+<% @pictures.each do |picture|%>
+	<%= link_to image_tag(picture.image_url(:med), alt: "Image-" + picture.id.to_s), picture.image_url(:large)%>
+	
+	<br />
+	<% if current_user?(@user) || current_user.admin?%>
+    <%= link_to "Delete", picture, method: :delete, data: { confirm: "You sure?" } %>
+	<%end%>
+	
+<%end%>
+</div>

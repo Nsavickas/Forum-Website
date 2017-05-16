@@ -1,0 +1,21 @@
+<%if @like_type == "Post"%>
+	$("#post-" + <%=j @like_id.to_s %> + "-likers" + " a:last-child").remove();
+
+	$("#post-" + <%=j @like_id.to_s %> + "-score")
+	.html("Score: " + <%=j get_score(@like_id, @like_type).to_s %>);
+
+	$("#post-like-button-" + <%=j @like_id.to_s%>)
+	.html("<%=j render partial: 'shared/unlikePost', locals: {like: Like.new, 
+	post:	Post.find_by_id(@like_id)}	%>");
+	
+<%else%>
+
+	$("#comment-" + <%=j @like_id.to_s %> + "-likers" + " a:last-child").remove();
+
+	$("#comment-" + <%=j @like_id.to_s %> + "-score")
+	.html("Score: " + <%=j get_score(@like_id, @like_type).to_s %>);
+
+	$("#comment-like-button-" + <%=j @like_id.to_s%>)
+	.html("<%=j render partial: 'shared/unlikeComment', locals: {like: Like.new, 
+	comment: Comment.find_by_id(@like_id)}	%>");
+<%end%>

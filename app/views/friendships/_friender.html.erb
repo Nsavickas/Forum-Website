@@ -1,0 +1,8 @@
+<div class="col-md-4">
+	<%if friendship.friender.avatar%>
+		<%= image_tag(friendship.friender_avatar_displaypic.url(:med) )%>
+	<%else%>
+		<%= image_tag 'no_image_icon.jpg'%>
+	<%end%> <br />
+	<%= link_to friendship.friender_name, user_path(friendship.friender_id)%>	
+</div>

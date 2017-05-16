@@ -1,0 +1,72 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table {
+	/*width: 100%;
+	padding: 0px 20px 0px 30px;*/
+	
+  .post {
+  	width: 20%;
+  }
+  .comment {
+  	width: 40%;
+  }
+  .created_at {
+  	width: 40%;
+  } 
+}
+
+/* User.index */
+
+.user-search {
+	background-color: rgba(0, 0, 0, 0.75);
+	margin-left: auto;
+	margin-right: auto;
+	
+	padding: 1% 0% 3% 0%;
+	
+	input {
+		width: 40%;
+		color: black;
+	}
+}
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid; /*$gray-lighter;*/
+  }
+}
+
+/* User.show */
+
+.user_info {
+	padding: 0px 0px 0px 20px;
+	
+	h1 {
+		padding: 10px 0px 10px 0px;
+		text-align: center;
+	}
+	
+	.user-avatar-img {
+		img {
+			display:block;
+			margin-left: auto;
+			margin-right: auto;
+			height: 200px;
+			width: 200px;
+		}
+	}
+}
+
+.user-activity-view {
+	padding: 0px 20px 0px 0px;
+}
+
+
+
+

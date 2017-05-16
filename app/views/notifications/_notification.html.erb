@@ -1,0 +1,29 @@
+<td class="description">
+ 	<%if notification.title == 'New Post-Like'%>
+  	Your post <%=link_to notification.notifiable.likeable.postname, 
+  	post_path(notification.notifiable.likeable)%> was liked by <%=link_to notification.notifiable.user_name, 
+  	user_path(notification.notifiable.user)%>
+  	
+	<%elsif notification.title == 'New Comment-Like'%>
+			Your comment in <%=link_to notification.notifiable.likeable.post.postname, 
+	  	post_path(notification.notifiable.likeable.post)%> was liked by <%=link_to notification.notifiable.user_name, 
+	  	user_path(notification.notifiable.user)%>
+	  	
+	<%elsif notification.title == 'New Post-Comment'%>
+			<%= notification.notifiable.user_name%> commented on your post, 
+			<%=link_to notification.notifiable.postname, post_path(notification.notifiable.post)%>.
+	
+	<%elsif notification.title == 'New Request-Friendship'%>
+			You received a friend request from <%=notification.notifiable.friender.name%>. 
+			Click <%=link_to 'here', user_path(notification.notifiable.friender)%> to view their page.
+	
+	<%elsif notification.title == 'New Accept-Friendship'%>
+			Your friend request to <%=notification.notifiable.friended.name%> was accepted. 
+			Click <%=link_to 'here', user_path(notification.notifiable.friended)%> to view their page.
+	<%end%>     
+</td>
+
+<td class="created_at">
+	<%= distance_of_time_in_words_to_now notification.created_at %> ago <br />
+	<%= link_to "delete", notification, method: :delete, remote: true%>
+</td> 

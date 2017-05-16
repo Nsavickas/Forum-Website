@@ -1,0 +1,16 @@
+<% provide(:title, "Edit forum") %>
+<h1>Update the Forum</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@forum) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      
+      <%= f.label :forumname, 'New Forum Name' %>
+      <%= f.text_field :forumname, class: 'form-control' %>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

@@ -1,0 +1,31 @@
+
+
+<div class="planetsideheader">
+	<h1>Welcome to the Planetside division of the Negus Gaming Clan.</h1>
+	<div class="planetsidenav">
+		<%= link_to "Visit the Forums", forum_subforums_path(1), class: "btn btn-md btn-primary" %>
+	</div>
+</div>
+
+<div class="planetsidebody">
+	<div class = "frontposts">
+		<h2>Recent Posts</h2> <hr />
+		<% @posts.order("created_at DESC").each do |post| %>
+			<strong><%= link_to post.postname, post%></strong> 
+			<p><%= post.content%> Posted: <%= distance_of_time_in_words_to_now post.created_at%></p>
+			<hr />
+		<%end%>
+	</div>
+	
+	<div class="trendingposts">
+		<div class = "frontposts">
+			<h2>Trending Posts</h2> <hr />
+			<% @trending_posts.each do |post| %>
+				<strong><%= link_to post.postname, post%></strong> 
+				<p><%= post.content%> Posted: <%= distance_of_time_in_words_to_now post.created_at%></p>
+				<hr />
+			<%end%>
+		</div>
+	</div>
+</div>
+
