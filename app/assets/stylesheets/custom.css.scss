@@ -6,21 +6,50 @@
 $gray-medium-light: #eaeaea;
 $white: #F0F0F0;
 
-@mixin box_sizing {
-  -moz-box-sizing:    content-box;
-  -webkit-box-sizing: content-box;
-  box-sizing:         content-box;
+@mixin border-box {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
 }
 
 /* universal */
+
+* {
+  @include border-box;
+}
 
 a {
 	color: #00ccff;
 }
 
-.sub-box {
-	padding: 2% 0% 3% 0%
+.medium-background {
+  background-color: rgba(0, 0, 0, 0.5)
 }
+
+.dark-background {
+  background-color: rgba(0, 0, 0, 0.8)
+}
+
+.flex-column-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.flex-row-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.flex-item {
+  
+}
+
+
+
 
 body {
   padding-top: 60px;
@@ -37,6 +66,10 @@ section {
 
 textarea {
   resize: vertical;
+}
+
+.sub-box {
+	padding: 2% 0% 3% 0%
 }
 
 /* typography */
@@ -114,7 +147,6 @@ input, textarea, select, .uneditable-input {
   width: 90%;
   margin-bottom: 15px;
   color: black;
-  @include box_sizing;
 }
 
 input {
@@ -232,36 +264,36 @@ table tr {
   	margin-left: auto;
   	margin-right: auto;
   }
-  
+
   .planetsideheader {
-	  position: relative;  
+	  position: relative;
 	  background: rgba(0,0,0,0.80);
 	  padding: 0px, 0px, 0px, 0px;
 	  width: 100%;
 	  height: 20%;
-	  
+
 	  input {
 	  	display: inline;
 	  }
-	
+
 		h1 {
 			color: gold;
 		}
-		
+
 		h2 {
   		padding: 10px 0px 30px 0px;
   		color: white;
 	  }
-	
+
 		.planetsidenav {
 		  height: 100%;
 		  width: 100%;
 		  color: red;
 		  text-align: center;
-		  padding: 0px 10px 20px 0px;		
+		  padding: 0px 10px 20px 0px;
 		}
 	}
-	
+
 	.planetsidebody {
 		position: relative;
 		height: 80%;
@@ -269,7 +301,7 @@ table tr {
 		/*display: block;*/
 	  margin-left: auto;
 	  margin-right: auto;
-		
+
 		.frontposts {
 			color: white;
 			margin-left: 20%;
@@ -279,17 +311,17 @@ table tr {
 			max-height: 600px;
 			overflow-y: scroll;
 			background: rgba(0,0,0,0.70);
-			
+
 			h2 {
 				color: white;
 				font-weight: 500;
 			}
-			
+
 			a {
 				padding: 10px 0px 10px 0px;
 				display: block;
 				text-align: center;
-	}}} 
+	}}}
 }
 
 #zombswrapper {
@@ -313,7 +345,6 @@ table tr {
   float: left;
   width: 100%;
   margin-top: 45px;
-  @include box_sizing;
 }
 
 
@@ -350,20 +381,3 @@ table tr {
 	color: white;
 	background-color: white;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
