@@ -27,7 +27,7 @@ gem 'mysql2', '0.4.5'
 gem 'json', github: 'flori/json', branch: 'v1.8'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.2.0'
-gem 'autoprefixer-rails'
+gem 'autoprefixer-rails', '7.1.1'
 gem 'sass-rails', '~> 5.0'
 
 # Use Uglifier as compressor for JavaScript assets

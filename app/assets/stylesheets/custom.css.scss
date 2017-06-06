@@ -30,34 +30,139 @@ a {
   background-color: rgba(0, 0, 0, 0.8)
 }
 
+//used to create a column/list attached to the left margin
 .flex-column-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: space-between;
 }
+
+//used to create a column/list that is centered
+.flex-column-container-centered {
+  @extend .flex-column-container;
+  align-items: center;
+}
+
 
 .flex-row-container {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: space-between;
+  justify-content: flex-start;
 }
 
-.flex-item {
-  
+.flex-row-element {
+  padding: 5px;
+  flex: 1;
+  //border-right: 2px solid grey;
 }
 
+.flex-column-element {
+  padding: 5px;
+}
 
+.border-flex-column-element {
+  @extend .flex-column-element;
+  margin-left: 5%;
+  margin-right: 5%;
+  border: 2px solid grey;
+}
 
+.content-wrapper {
+  @extend .medium-background;
+
+  //overflow: auto;
+}
+
+.center {
+  text-align: center;
+  background: rgba(0,0,0,0.90);
+}
+
+.planetsidewrapper {
+  height: 100%;
+  width: 100%;
+  input {
+  	width: 90%;
+  	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+  }
+
+  .planetsideheader {
+	  position: relative;
+	  background: rgba(0,0,0,0.80);
+	  padding: 0px, 0px, 0px, 0px;
+	  width: 100%;
+	  height: 20%;
+
+	  input {
+	  	display: inline;
+	  }
+
+		.planetsidenav {
+		  height: 100%;
+		  width: 100%;
+		  color: red;
+		  text-align: center;
+		  padding: 0px 10px 20px 0px;
+		}
+	}
+
+	.planetsidebody {
+		position: relative;
+		height: 80%;
+	  width: 100%;
+		/*display: block;*/
+	  margin-left: auto;
+	  margin-right: auto;
+
+		.frontposts {
+			color: white;
+			margin-left: 20%;
+			margin-top: 5%;
+			width: 60%;
+			height: 100%;
+			max-height: 600px;
+			overflow-y: scroll;
+			background: rgba(0,0,0,0.70);
+
+			h2 {
+				color: white;
+				font-weight: 500;
+			}
+
+			a {
+				padding: 10px 0px 10px 0px;
+				display: block;
+				text-align: center;
+	}}}
+}
+
+#zombs-background {
+  background-image: url("zombsbg.jpg") no-repeat center center fixed;;
+}
+
+#planetside-background {
+  background-image: url("planetside2.jpg") no-repeat center center fixed;
+}
+
+html {
+  height: 100%;
+}
 
 body {
+  height: 100%;
   padding-top: 60px;
-  background: url("planetside2.jpg") no-repeat center center fixed;
+  background-color: #252525;
+  //background: url("planetside2.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  overflow-x: hidden;
 }
 
 section {
@@ -76,33 +181,26 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
+  padding: 3% 2% 3% 2%;
+  color: #ebebeb;
+  text-align: center;
 }
 
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
-  margin-bottom: 30px;
-  padding-top: 30px;
-  text-align: center;
-  color: gold;
 }
 
 h2 {
   font-size: 2em;
   letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
   font-weight: normal;
-  color: gold;
 }
 
 h3 {
 	font-size: 2em;
   letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
   font-weight: normal;
-  color: $gray-light;
 }
 
 p {
@@ -110,7 +208,6 @@ p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
-
 
 /* sidebar */
 
@@ -218,28 +315,8 @@ table tr {
 
 /* miscellaneous */
 
-.center {
-  text-align: center;
-  background: rgba(0,0,0,0.90);
-  h1 {
-    color: gold;
-    margin-bottom: 10px;
-  }
-}
-
 .pagination {
 	padding-left: 20px;
-}
-
-#site { overflow-x: hidden; }
-
-#chooseGame {
-  color: blue;
-  font-size: 50pt;
-}
-
-#GameLinks {
-  text-align: center;
 }
 
 .form-wrapper {
@@ -251,87 +328,6 @@ table tr {
 	color: red;
 	font-size: 20pt;
 }
-
-.planetsidewrapper {
-  background: rgba(0,0,0,0.65);
-  color: white;
-  /*background: url("planetside2.jpg") center top no-repeat;*/
-  height: 100%;
-  width: 100%;
-  input {
-  	width: 90%;
-  	display: block;
-  	margin-left: auto;
-  	margin-right: auto;
-  }
-
-  .planetsideheader {
-	  position: relative;
-	  background: rgba(0,0,0,0.80);
-	  padding: 0px, 0px, 0px, 0px;
-	  width: 100%;
-	  height: 20%;
-
-	  input {
-	  	display: inline;
-	  }
-
-		h1 {
-			color: gold;
-		}
-
-		h2 {
-  		padding: 10px 0px 30px 0px;
-  		color: white;
-	  }
-
-		.planetsidenav {
-		  height: 100%;
-		  width: 100%;
-		  color: red;
-		  text-align: center;
-		  padding: 0px 10px 20px 0px;
-		}
-	}
-
-	.planetsidebody {
-		position: relative;
-		height: 80%;
-	  width: 100%;
-		/*display: block;*/
-	  margin-left: auto;
-	  margin-right: auto;
-
-		.frontposts {
-			color: white;
-			margin-left: 20%;
-			margin-top: 5%;
-			width: 60%;
-			height: 100%;
-			max-height: 600px;
-			overflow-y: scroll;
-			background: rgba(0,0,0,0.70);
-
-			h2 {
-				color: white;
-				font-weight: 500;
-			}
-
-			a {
-				padding: 10px 0px 10px 0px;
-				display: block;
-				text-align: center;
-	}}}
-}
-
-#zombswrapper {
-  background-image: url("zombsbg.jpg");
-}
-
-.gamelogos {
-  image-width: 240px;
-  image-height: 240px;
- }
 
 .user_info {
 	img {
@@ -375,7 +371,6 @@ table tr {
   width: auto;
   margin-left: 0;
 }
-
 
 #notice {
 	color: white;

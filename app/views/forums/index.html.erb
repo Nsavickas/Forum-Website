@@ -8,17 +8,17 @@
 </div>
 
 
-<div class="flex-container">
+<div class="flex-column-container">
 	<% @forums.each do |forum| %>
-	<div class="flex-row">
+	<div class="flex-row-container flex-column-element">
 
-		<div class="flex-item">
+		<div class="flex-row-element">
 			<%= link_to forum.forumname, forum_subforums_path(forum) %>
 		</div>
-		<div class="flex-item">
+		<div class="flex-row-element">
 			<%= link_to 'Edit', edit_forum_path(forum) %>
 		</div>
-		<div class="flex-item">
+		<div class="flex-row-element">
 			<%= link_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' } %>
 		</div>
 
