@@ -1,3 +1,23 @@
 // Place all the styles related to the Forums controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "custom.css.scss";
+
+.forum-flex-row {
+  @extend .flex-row-container;
+  border: 2px solid grey;
+
+  .flex-row-element:nth-child(1) {
+    flex: 3;
+  };
+
+  .flex-row-element:nth-child(2) {
+    flex: 1;
+  };
+
+  .flex-row-element:nth-child(3) {
+    flex: 1;
+  };
+
+}

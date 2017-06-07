@@ -2,15 +2,9 @@
 
 <h1>Forums</h1>
 
-
-<div class="flex-container">
-
-</div>
-
-
 <div class="flex-column-container">
 	<% @forums.each do |forum| %>
-	<div class="flex-row-container flex-column-element">
+	<div class="forum-flex-row flex-column-element">
 
 		<div class="flex-row-element">
 			<%= link_to forum.forumname, forum_subforums_path(forum) %>
