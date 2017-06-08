@@ -1,23 +1,25 @@
-<div class="flex-column-container">
-    <div class="forum-flex-row flex-column-element">
-			<div class="flex-row-element">
-				<%= link_to subforum.subforumname, subforum_posts_path(subforum) %>
-			</div>
-			<div class="flex-row-element">
-      	<% newest_post = subforum.most_recent_post%>
-      	<%if !newest_post.nil?%>
-      		<%= link_to newest_post.postname, newest_post%>
-      		by <%= link_to newest_post.user_name%>
-      		<%= distance_of_time_in_words_to_now newest_post.created_at %> ago
-      	<%else%>
-      		<%= "No posts yet"%>
-      	<%end%>
-			</div>
-			<div class="flex-row-element">
-      	<% if logged_in? && current_user.admin? %>
-      		<%= link_to 'Edit', edit_subforum_path(subforum) %>
-	    		<%= link_to 'Destroy', subforum, method: :delete, data: { confirm: 'Are you sure?' } %>
-      	<%end%>
-			</div>
-		</div>
+<div class="subforum-flex-row flex-column-element">
+	<div class="flex-row-element">
+		<%= link_to subforum.subforumname, subforum_posts_path(subforum) %>
+	</div>
+	<div class="flex-row-element">
+  	<% newest_post = subforum.most_recent_post%>
+  	<%if !newest_post.nil?%>
+  		<%= link_to newest_post.postname, newest_post%>
+  		by <%= link_to newest_post.user_name%>
+  		<%= distance_of_time_in_words_to_now newest_post.created_at %> ago
+  	<%else%>
+  		<%= "No posts yet"%>
+  	<%end%>
+	</div>
+	<div class="flex-row-element">
+  	<% if logged_in? && current_user.admin? %>
+  		<%= link_to edit_subforum_path(subforum) do %>
+        <span class="glyphicon glyphicon-pencil"></span>
+      <%end%>
+  		<%= link_to subforum, method: :delete, data: { confirm: 'Are you sure?' } do %>
+        <span class="glyphicon glyphicon-remove"></span>
+      <%end%>
+    <%end%>
+	</div>
 </div>

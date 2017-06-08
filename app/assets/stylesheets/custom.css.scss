@@ -32,6 +32,8 @@ a {
 
 //used to create a column/list attached to the left margin
 .flex-column-container {
+  margin-left: 4%;
+  width: 92%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -71,7 +73,7 @@ a {
 }
 
 #zombs-background {
-  background-image: url("zombsbg.jpg") no-repeat center center fixed;;
+  background-image: url("zombsbg.jpg") no-repeat center center fixed;
 }
 
 #planetside-background {
@@ -103,7 +105,7 @@ textarea {
 }
 
 .sub-box {
-	padding: 2% 0% 3% 0%
+	padding: 2% 0% 3% 0%;
 }
 
 /* typography */
@@ -144,8 +146,13 @@ p {
 /* forms */
 
 .form-wrapper {
-	/*background: #101010;*/
-	padding: 0px 0px 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 input, textarea, select, .uneditable-input {
@@ -159,9 +166,6 @@ input {
   height: auto !important;
 }
 
-button {
-
-}
 
 /* header */
 

@@ -1,18 +1,17 @@
-<% provide(:title, "Edit subforum") %>
-<h1>Update the Subforum</h1>
+<% provide(:title, "Edit #{@subforum.subforumname}") %>
+<h2>Update the Subforum</h2>
 
 <div class="form-wrapper">
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@subforum) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
+  <%= form_for(@subforum) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
 
+    <div class="flex-column-element">
       <%= f.label :subforumname, 'New Subforum Name' %>
-      <%= f.text_field :subforumname, class: 'form-control' %>
+      <%= f.text_field :subforumname, class: 'form-control flex-column-element' %>
+    </div>
 
-      <%= f.submit "Save changes", class: "btn btn-primary" %>
-    <% end %>
-
-  </div>
-</div>
+    <div class="flex-column-element">
+      <%= f.submit "Save changes", class: "btn btn-primary flex-column-element" %>
+    <div>
+  <% end %>
 </div>

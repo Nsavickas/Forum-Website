@@ -1,20 +1,25 @@
-<% provide(:title, "#{@forum.forumname} Subforums") %>
+<% provide(:title, "#{@forum.forumname} Forums") %>
 
 <p id="notice"><%= notice %></p>
 
-<h1><%=@forum.forumname%> Forum</h1>
-<h3>
+<h1>
+	<%=@forum.forumname%> Topics
 	<% if logged_in? && current_user.admin? %>
-    <%= link_to "Create Subforum", new_forum_subforum_path(@forum) %>
-  <% end %>
-</h3>
+		<%= link_to new_forum_subforum_path(@forum) do %>
+			<span class="glyphicon glyphicon-plus"></span>
+		<%end%>
+	<% end %>
+</h1>
 
-<div class="forum-flex-row">
-	<div class="flex-row-element">Subforum</div>
-	<div class="flex-row-element">Newest Post</div>
+<div class="flex-column-container-centered">
+	<div class="subforum-flex-row">
+		<div class="flex-row-element">Subforum</div>
+		<div class="flex-row-element">Newest Post</div>
+		<div class="flex-row-element"></div>
+	</div>
+
+	<%= render @subforums%>
+	<%= paginate @subforums%>
 </div>
-
-<%= render @subforums%>
-<%= paginate @subforums%>
 
 <br>

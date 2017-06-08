@@ -9,7 +9,7 @@
   border: 2px solid grey;
 
   .flex-row-element:nth-child(1) {
-    flex: 3;
+    flex: 8;
   };
 
   .flex-row-element:nth-child(2) {
@@ -17,7 +17,7 @@
   };
 
   .flex-row-element:nth-child(3) {
-    flex: 1;
+    flex: 0;
   };
 
 }
