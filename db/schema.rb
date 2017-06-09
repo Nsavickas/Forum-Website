@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151015171200) do
+ActiveRecord::Schema.define(version: 20170609013153) do
 
   create_table "avatars", force: :cascade do |t|
     t.string   "displaypic_file_name",    limit: 255
@@ -134,8 +134,9 @@ ActiveRecord::Schema.define(version: 20151015171200) do
   create_table "subforums", force: :cascade do |t|
     t.string   "subforumname", limit: 255
     t.integer  "forum_id",     limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.boolean  "admin_only",               default: true
   end
 
   add_index "subforums", ["forum_id"], name: "index_subforums_on_forum_id", using: :btree

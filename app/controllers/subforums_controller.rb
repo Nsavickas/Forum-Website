@@ -20,7 +20,7 @@ class SubforumsController < ApplicationController
 
     respond_to do |format|
       if @subforum.save
-        format.html { redirect_to @subforum, notice: 'Subforum was successfully created.' }
+        format.html { redirect_to @subforum, notice: 'Discussion Created!' }
         format.json { render :show, status: :created, location: @subforum }
       else
         format.html { render :new }
@@ -36,7 +36,7 @@ class SubforumsController < ApplicationController
   def update
     @subforum = Subforum.find(params[:id])
     if @subforum.update_attributes(subforum_params)
-      flash[:success] = "Subforum updated"
+      flash[:success] = "Update Successful!"
       redirect_to @subforum
     else
       render 'edit'
@@ -56,7 +56,7 @@ class SubforumsController < ApplicationController
     end
 
     def subforum_params
-        params.require(:subforum).permit(:subforumname,:forum_id)
+        params.require(:subforum).permit(:subforumname, :admin_only , :forum_id)
     end
 
     def logged_in_user

@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Forums</h1>
+<h2>
+	Forums
+	<%= link_to new_forum_path do%>
+		<span class="glyphicon glyphicon-plus"><span>
+	<%end%>
+</h2>
 
 <div class="flex-column-container">
 	<% @forums.each do |forum| %>
@@ -18,7 +23,7 @@
 			<%end%>
 		</div>
 		<div class="flex-row-element"></div>
-		
+
 	</div>
 	<% end %>
 </div>

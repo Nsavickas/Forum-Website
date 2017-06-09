@@ -2,14 +2,14 @@
 
 <p id="notice"><%= notice %></p>
 
-<h1>
+<h2>
 	<%=@forum.forumname%> Topics
 	<% if logged_in? && current_user.admin? %>
 		<%= link_to new_forum_subforum_path(@forum) do %>
 			<span class="glyphicon glyphicon-plus"></span>
 		<%end%>
 	<% end %>
-</h1>
+</h2>
 
 <div class="flex-column-container-centered">
 	<div class="subforum-flex-row">

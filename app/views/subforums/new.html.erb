@@ -5,13 +5,16 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@subforum) do |f| %>
-	  
-	  <%= f.hidden_field :forum_id, :value => params[:forum_id] %>
-	  
-	  <%= f.hidden_field :user_id, :value => current_user.id %>
-	  	  
+
+  	  <%= f.hidden_field :forum_id, :value => params[:forum_id] %>
+
+  	  <%= f.hidden_field :user_id, :value => current_user.id %>
+
       <%= f.label :subforumname, 'Subforum Name' %>
       <%= f.text_field :subforumname, class: 'form-control' %>
+
+      <%= f.label :admin_only, 'Admin Only?' %>
+      <%= f.check_box :admin_only, checked: false, class: 'form-control'%>
 
       <%= f.submit "Submit", class: "btn btn-primary" %>
     <% end %>
