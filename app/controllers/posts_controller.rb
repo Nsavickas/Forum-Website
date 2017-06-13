@@ -4,8 +4,8 @@ class PostsController < ApplicationController
   before_action :logged_in_user, except: [:show, :index]
   before_action :correct_user,   only: [:edit, :update, :destroy]
   before_action :admin_user,     only: [:toggle_sticky]
-  before_action :admin_only_subforum, only: [:new]
-  skip_before_action :correct_user if :check_admin == true
+  before_action :admin_only_subforum, only: [:new, :create]
+  skip_before_action :correct_user if :check_admin #== true
 
   #impressionist :actions => [:show, :index]
 
@@ -17,7 +17,8 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.toggle_sticky
-        format.html { redirect_to subforum_posts_path(@subforum, @post), notice: 'Toggle sticky was successful.' }
+        flash[:success] = 'Post #{@post.sticky}'
+        format.html { redirect_to subforum_posts_path(@subforum, @post) }
         format.js {}
         format.json { render :index, status: :updated, location: @post }
       else

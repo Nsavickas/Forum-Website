@@ -1,9 +1,9 @@
 <div class="subforum-flex-row flex-column-element">
 	<div class="flex-row-element">
-		<%if post.sticky == true%>
-			<span class="glyphicon glyphicon-tag"></span>
-		<%end%>
 		<%= div_for(post) do %>
+			<%if post.sticky == true%>
+				<span class="glyphicon glyphicon-tag"></span>
+			<%end%>
 			<%= link_to post.postname, post_path(post), class: 'tooltips',
 			title: "#{post.content}", data: { toggle: 'tooltip', placement: 'top'} %>
 		<%end%>
@@ -28,23 +28,15 @@
 			<% if logged_in? && current_user.admin?%>
 				<%#= button_to 'Toggle Sticky', post_toggle_path(post), class: "btn btn-default"%>
 				<% if post.sticky == true%>
-					<%=link_to edit_post_path(post) do %>
+					<%=link_to post_sticky_path(post), {method: :post} do %>
 						<span class="glyphicon glyphicon-heart"></span>
 					<%end%>
 				<% else%>
-					<%=link_to edit_post_path(post) do %>
+					<%=link_to post_sticky_path(post), {method: :post} do %>
 						<span class="glyphicon glyphicon-heart-empty"></span>
 					<%end%>
 				<%end%>
 			<%end%>
-
-			<div class="sticky-icon">
-				<%if post.sticky == true%>
-					Stickied <br />
-				<%else%>
-					Unstickied <br />
-				<%end%>
-			</div>
 
 			<% if logged_in? && (current_user.admin? || (current_user == post.user)) %>
     	  <%#= button_to "Unsticky", unsticky_path %>

@@ -1,18 +1,14 @@
-
 <% provide(:title, "#{@subforum.subforumname} Posts") %>
-
 
 <h2>
 	<%= link_to forum_subforums_path(@subforum.forum) do%>
 		<span class="glyphicon glyphicon-arrow-left"></span>
 	<%end%>
 	<%= @subforum.subforumname%>
-	<%if current_user && logged_in? %>
-	<%if @subforum.id != 10 || current_user.admin?%>
+	<%if logged_in? && (!@subforum.admin_only? || current_user.admin?) %>
 		<%= link_to new_subforum_post_path(@subforum) do%>
 			<span class="glyphicon glyphicon-plus"></span>
 		<%end%>
-	<%end%>
 	<%end%>
 </h2>
 
@@ -26,11 +22,4 @@
 
 	<%= render @posts%>
 	<%= paginate @posts%>
-</div>
-
-
-<div class="posts-wrapper">
-	<%#@posts.each do |post|%>
-			<%#= render post%>
-	<%#end%>
 </div>

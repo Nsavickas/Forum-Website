@@ -150,9 +150,12 @@ p {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 60%;
-  margin-left: auto;
-  margin-right: auto;
+  //width: 60%;
+  //margin-left: auto;
+  //margin-right: auto;
+  form {
+    width: 50%;
+  }
 }
 
 input, textarea, select, .uneditable-input {

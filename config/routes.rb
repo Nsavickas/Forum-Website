@@ -54,8 +54,10 @@ Rails.application.routes.draw do
   resources :posts, shallow: true do
     resources :comments
     resources :pictures
-    post 'toggle' => 'posts#toggle_sticky' as: :sticky_post_path
+    post 'sticky' => 'posts#toggle_sticky', as: :sticky
   end
+
+  #post 'posts/:id/sticky' => 'posts#toggle_sticky', as: :sticky
 
   resources :comments
 
@@ -74,7 +76,6 @@ Rails.application.routes.draw do
   resources :notifications, only: [:create, :destroy, :update]
 
   resources :avatars
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
