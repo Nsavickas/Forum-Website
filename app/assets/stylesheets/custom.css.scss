@@ -40,6 +40,12 @@ a {
   justify-content: space-between;
 }
 
+.flex-column-container-no-margin {
+  @extend .flex-row-container;
+  margin-left: 0%;
+  width: 100%;
+}
+
 //used to create a column/list that is centered
 .flex-column-container-centered {
   @extend .flex-column-container;

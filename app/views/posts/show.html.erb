@@ -5,85 +5,90 @@
 
 <% provide(:title, @post.postname) %>
 
-<div class="post-wrapper">
-    <div class="planetsideheader">
-	    <h1><%= @post.postname %></h1>
-	    <h2>Authored by: <%= link_to @post.user_name, @post.user%> <br /> <br />
-	    	Subforum: <%= link_to @post.subforumname, subforum_posts_path(@post.subforum)%>
-	    	</h2>
-   	</div>
-  <div class="post-body">
-    <p> <%= @post.content %></p>
-
-	  <div class="post-pictures">
-	 	  <% @post.pictures.each do |picture| %>
-	    <%= link_to image_tag(picture.image_url(:med)), picture.image_url%>
-	    <%end%>
-	  </div>
-
-	  <div id=<%="post-like-button-#{@post.id}"%> class="like-button">
-		 	<% if current_user && user_has_liked_entry(@post.id, "Post") == false%>
-		 		<%= form_for @like, remote: true do |f| %>
-		 			<%= f.hidden_field :likeable_id, :value => @post.id %>
-		 			<%= f.hidden_field :likeable_type, :value => Post %>
-	  			<%= f.hidden_field :user_id, :value => current_user.id %>
-	  			<%= f.submit "Like", class: "btn btn-primary btn-sm" %>
-		 		<%end%>
-		 	<%elsif user_has_liked_entry(@post.id, "Post") == true%>
-		 		<%= button_to 'Unlike', find_like(@post.id, "Post"), method: :delete,
-		 		remote: true, class: 'btn btn-default btn-sm' %>
-		 	<%end%>
-	  </div>
-
-	  <div id=<%="post-#{@post.id}-score" %> class="score">
-	  	Score: <%=get_score(@post.id, "Post")%>
-	  </div>
-
-	  <div class="toggle-likes-button">
-	  	<%if logged_in?%>
-	 		<label>Show Likes?<input type="checkbox" name="likes-checkbox" class="likes-checkbox" /></label>
-	  	<%end%>
-	  </div>
-
-		<div class="likers">
-		  <div id=<%= "post-#{@post.id}-likers" -%> class="hide">
-		 			Liked by:
-			 			<%@post.likes.each do |like|%>
-			 				<%= link_to like.user_name, like.user%>
-			 				<%= "| " unless like == @post.likes.last%>
-						<%end%>
-		  </div>
-   </div>
-
-   <table class="show-post">
-   	<thead>
-   		<tr>
-	      <th>Commenter</th>
-	      <th>Comment</th>
-	      <th></th>
-	      <th colspan="3"></th>
-	    </tr>
-   	</thead>
-
-   	<tbody>
-   		<div class=<%= "post-" + "#{@post.id}" + "-comments" %>>
-				<% @comments.each do |comment| %>
-   				<%= render partial: comment, locals: {like: Like.new}%>
-   			<%end%>
-   		</div>
-   	</tbody>
-   	<%= paginate @comments%>
-  </table>
-
-	<div class="post-comments"></div>
-  <div class="edit-destroy-comment">
-	  <% if logged_in? %>
-		   	<%= link_to 'Comment', new_post_comment_path(@post), remote: true %>
-		<%end%>
-		<% if logged_in? && (current_user.id == @post.user_id)%>
-		   	| | <%= link_to 'Edit', edit_post_path(@post) %> | |
-		   	<%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
-		<%end%>
+<div class="flex-column-container-centered">
+	<div class="post-header flex-column-element">
+		<h2>
+			<%= link_to subforum_posts_path(@post.subforum) do%>
+				<span class="glyphicon glyphicon-arrow-left"></span>
+			<%end%>
+			<%= @post.postname %>
+		</h2>
 	</div>
+
+	<div class="post-body flex-row-container">
+		<div class="flex-row-element">
+			<%= link_to @post.user_name, @post.user%>
+		</div>
+		<div class="flex-row-element">
+			<p> <%= @post.content %></p>
+			<div class="post-pictures">
+		 	  <% @post.pictures.each do |picture| %>
+		    <%= link_to image_tag(picture.image_url(:med)), picture.image_url%>
+		    <%end%>
+		  </div>
+		</div>
+		<div class="flex-row-element">
+			<div id=<%="post-like-button-#{@post.id}"%> class="like-button">
+			 	<% if current_user && user_has_liked_entry(@post.id, "Post") == false%>
+			 		<%= form_for @like, remote: true do |f| %>
+			 			<%= f.hidden_field :likeable_id, :value => @post.id %>
+			 			<%= f.hidden_field :likeable_type, :value => Post %>
+		  			<%= f.hidden_field :user_id, :value => current_user.id %>
+		  			<%= f.submit "Like", class: "btn btn-primary btn-sm" %>
+			 		<%end%>
+			 	<%elsif user_has_liked_entry(@post.id, "Post") == true%>
+			 		<%= button_to 'Unlike', find_like(@post.id, "Post"), method: :delete,
+			 		remote: true, class: 'btn btn-default btn-sm' %>
+			 	<%end%>
+		  </div>
+
+		  <div id=<%="post-#{@post.id}-score" %> class="score">
+		  	Score: <%=get_score(@post.id, "Post")%>
+		  </div>
+
+		  <div class="toggle-likes-button">
+		  	<%if logged_in?%>
+		 		<label>Show Likes?<input type="checkbox" name="likes-checkbox" class="likes-checkbox" /></label>
+		  	<%end%>
+		  </div>
+
+			<div class="likers">
+			  <div id=<%= "post-#{@post.id}-likers" -%> class="hide">
+			 			Liked by:
+				 			<%@post.likes.each do |like|%>
+				 				<%= link_to like.user_name, like.user%>
+				 				<%= "| " unless like == @post.likes.last%>
+							<%end%>
+			  </div>
+	  	</div>
+		</div>
+	</div>
+
+	<div class="comments flex-column-container-no-margin">
+		<div class="flex-column-element flex-row-container">
+			<div class="flex-row-element"> User </div>
+			<div class="flex-row-element"> Comment </div>
+			<div class="flex-row-element"></div>
+		</div>
+		<div class="flex-column-element" id=<%= "post-" + "#{@post.id}" + "-comments" %>>
+			<% @comments.each do |comment| %>
+				<%= render partial: comment, locals: {like: Like.new}%>
+			<%end%>
+		</div>
+		<div class="flex-column-element">
+			<%= paginate @comments%>
+		</div>
+	</div>
+
+	<div class="post-options">
+		<div class="edit-destroy-comment">
+		  <% if logged_in? %>
+			   	<%= link_to 'Comment', new_post_comment_path(@post), remote: true %>
+			<%end%>
+			<% if logged_in? && (current_user.id == @post.user_id)%>
+			   	| | <%= link_to 'Edit', edit_post_path(@post) %> | |
+			   	<%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+			<%end%>
+		</div>
 	</div>
 </div>
