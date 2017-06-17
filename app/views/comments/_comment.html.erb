@@ -11,14 +11,14 @@
 
 	<div class="flex-row-element comment">
 		<%= comment.comment_content %>
-
-		<% if logged_in? && (current_user.id == comment.user_id || current_user.admin?) %>
-			<%= link_to 'Edit', edit_comment_path(comment)%>
-			<%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' }%>
-	  <%end%>
 	</div>
 
 	<div class="flex-row-element">
+		<% if logged_in? && (current_user.id == comment.user_id || current_user.admin?) %>
+			<%= link_to 'Edit', edit_comment_path(comment)%>
+			<%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' }%>
+		<%end%>
+
 		<div id=<%= "comment-like-button-#{comment.id}" -%> class="like-button">
 		 	<% if logged_in? && (user_has_liked_entry(comment.id, "Comment") == false)%>
 		 		<%= form_for like, remote: true, class: 'like-form' do |f| %>

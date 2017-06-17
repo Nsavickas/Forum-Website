@@ -41,7 +41,7 @@ a {
 }
 
 .flex-column-container-no-margin {
-  @extend .flex-row-container;
+  @extend .flex-column-container;
   margin-left: 0%;
   width: 100%;
 }
@@ -65,7 +65,7 @@ a {
 }
 
 .flex-column-element {
-  padding: 5px 15px 5px 15px;
+  padding: 5px;
 }
 
 .content-wrapper {

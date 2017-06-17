@@ -1,3 +1,22 @@
 // Place all the styles related to the comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "custom.css.scss";
+
+.comment-flex-row {
+  @extend .flex-row-container;
+
+  .flex-row-element:nth-child(1) {
+    flex: 4;
+  };
+
+  .flex-row-element:nth-child(2) {
+    flex: 4;
+  };
+
+  .flex-row-element:nth-child(3) {
+    flex: 1;
+  };
+
+}
