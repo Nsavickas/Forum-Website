@@ -12,7 +12,7 @@
 	<div class="flex-row-element">
 		<div class="last_post">
   	  <%if post.comments.last%>
-  	  	<div>By: <%= link_to post.comments.last.user_name, post.comments.last.user %>
+  	  	<div>By: <%= link_to post.comments.last.user.name, post.comments.last.user %>
   	    <%= distance_of_time_in_words_to_now post.comments.last.created_at%> ago</div>
 	  	<%else%>
 	  		No comments
@@ -26,7 +26,6 @@
 	<div class="flex-row-element">
 		<div class="misc">
 			<% if logged_in? && current_user.admin?%>
-				<%#= button_to 'Toggle Sticky', post_toggle_path(post), class: "btn btn-default"%>
 				<% if post.sticky == true%>
 					<%=link_to post_sticky_path(post), {method: :post} do %>
 						<span class="glyphicon glyphicon-heart"></span>
@@ -39,7 +38,6 @@
 			<%end%>
 
 			<% if logged_in? && (current_user.admin? || (current_user == post.user)) %>
-    	  <%#= button_to "Unsticky", unsticky_path %>
 				<%=link_to edit_post_path(post) do %>
 	        <span class="glyphicon glyphicon-pencil"></span>
 	      <%end%>

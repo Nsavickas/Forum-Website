@@ -6,7 +6,7 @@
   	<% newest_post = subforum.most_recent_post%>
   	<%if !newest_post.nil?%>
   		<%= link_to newest_post.postname, newest_post%>
-  		by <%= link_to newest_post.user_name%>
+  		by <%= link_to newest_post.user.name%>
   		<%= distance_of_time_in_words_to_now newest_post.created_at %> ago
   	<%else%>
   		<%= "No posts yet"%>

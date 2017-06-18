@@ -30,6 +30,14 @@ a {
   background-color: rgba(0, 0, 0, 0.8)
 }
 
+
+/*
+** FLEX COLUMNS
+*/
+
+
+
+
 //used to create a column/list attached to the left margin
 .flex-column-container {
   margin-left: 4%;
@@ -68,15 +76,21 @@ a {
   padding: 5px;
 }
 
+.flex-sidebar-content {
+  @extend .flex-row-container;
+  .flex-row-element:nth-child(1) {
+    flex: 20;
+  }
+  .flex-row-element:nth-child(2) {
+    flex: 80;
+  }
+}
+
 .content-wrapper {
   @extend .medium-background;
   //overflow: auto;
 }
 
-.center {
-  text-align: center;
-  background: rgba(0,0,0,0.90);
-}
 
 #zombs-background {
   background-image: url("zombsbg.jpg") no-repeat center center fixed;
@@ -146,7 +160,16 @@ h3 {
 p {
   text-align: center;
   font-size: 1.1em;
+  color: #ebebeb;
   line-height: 1.7em;
+}
+
+div {
+  color: #ebebeb;
+}
+
+.center-text {
+  text-align: center;
 }
 
 /* forms */
@@ -162,14 +185,17 @@ p {
   form {
     width: 50%;
   }
+  input {
+    width: 100%;
+  }
 }
 
-input, textarea, select, .uneditable-input {
+/*input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 90%;
   margin-bottom: 15px;
   color: black;
-}
+}*/
 
 input {
   height: auto !important;
@@ -188,7 +214,7 @@ input {
   padding-top: 9px;
   font-weight: bold;
   &:hover {
-    color: white;
+    color: #ebebeb;
     text-decoration: none;
   }
 }
@@ -217,54 +243,6 @@ footer {
       margin-left: 15px;
     }
   }
-}
-
-/* sidebar */
-
-aside {
-  section.user_info {
-    margin-top: 20px;
-  }
-  section {
-    padding: 10px 0;
-    margin-top: 20px;
-    &:first-child {
-      border: 0;
-      padding-top: 0;
-    }
-    span {
-      display: block;
-      margin-bottom: 3px;
-      line-height: 1;
-    }
-    h1 {
-      font-size: 1.4em;
-      text-align: left;
-      letter-spacing: -1px;
-      margin-bottom: 3px;
-      margin-top: 0px;
-    }
-  }
-}
-
-/* Tables */
-table {
-	width: 98%;
-	margin: 0px 10px 0px 10px;
-	padding: 0px 20px 0px 30px;
-	width: 98%;
-	background: rgba(0,0,0,0.60);
-	/*border: 1px solid white;
-	border-collapse: collapse;*/
-}
-
-table td {
-	padding: 10px 10px 10px 10px;
-	/*margin-bottom: 5px;*/
-}
-
-table tr {
-	border: 4px solid #4C4C33;
 }
 
 /* miscellaneous */

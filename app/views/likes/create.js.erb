@@ -1,23 +1,19 @@
 <%if @like.likeable_type == "Post"%>
-	$("<%= escape_javascript(link_to @like.user.name, @like.user) %>")
-	.appendTo("#post-" + <%=j @like.likeable_id.to_s%> + "-likers");
+	$("<%= escape_javascript(link_to @like.user.name, @like.user) %>").appendTo("#post-" + <%=j @like.likeable_id.to_s%> + "-likers");
 
-	$("#post-" + <%=j @like.likeable_id.to_s %> + "-score")
-	.html("Score: " + <%=j get_score(@like.likeable_id, @like.likeable_type).to_s %>);
+	$("#post-" + <%=j @like.likeable_id.to_s %> + "-score").html("Score: " + <%=j get_score(@like.likeable_id, @like.likeable_type).to_s %>);
 
 	$("#post-like-button-" + <%=j @like.likeable_id.to_s%>)
-	.html("<%= escape_javascript(button_to 'Unlike', find_like(@like.likeable_id, @like.likeable_type), method: :delete, 
+	.html("<%= escape_javascript(button_to 'Unlike', find_like(@like.likeable_id, @like.likeable_type), method: :delete,
 	remote: true, class: 'btn btn-default btn-sm') %>");
-	
+
 <%else%>
 
-	$("<%= escape_javascript(link_to @like.user.name, @like.user) %>")
-	.appendTo("#comment-" + <%=j @like.likeable_id.to_s%> + "-likers");
-	
-	$("#comment-" + <%=j @like.likeable_id.to_s %> + "-score")
-	.html("Score: " + <%=j get_score(@like.likeable_id, @like.likeable_type).to_s %>);
-	
+	$("<%= escape_javascript(link_to @like.user.name, @like.user) %>").appendTo("#comment-" + <%=j @like.likeable_id.to_s%> + "-likers");
+
+	$("#comment-" + <%=j @like.likeable_id.to_s %> + "-score").html("Score: " + <%=j get_score(@like.likeable_id, @like.likeable_type).to_s %>);
+
 	$("#comment-like-button-" + <%=j @like.likeable_id.to_s%>)
-	.html("<%= escape_javascript(button_to 'Unlike', find_like(@like.likeable_id, @like.likeable_type), method: :delete, 
+	.html("<%= escape_javascript(button_to 'Unlike', find_like(@like.likeable_id, @like.likeable_type), method: :delete,
 	remote: true, class: 'btn btn-default btn-sm') %>");
 <%end%>

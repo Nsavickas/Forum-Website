@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, except: [:new, :create]
   before_action :correct_user,   only: [:edit, :update, :destroy]
-  before_action :admin_user,     only: :destroy
-  before_action :get_user, only: [:show, :edit, :update, :destroy]
+  before_action :admin_user,     only: :destroy unless :correct_user
 
   def new
     @user = User.new
   end
 
   def show
+    @user = User.find(params[:id])
     @avatar = @user.avatar
     @friendship = Friendship.get_mutual_friendship(@user.id, current_user.id).first
     @user_posts = @user.posts.page(params[:page]).per(10)
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 
         @user.send_activation_email
 
-        format.html { redirect_to @user, notice: 'Please check your email to activate your account' }
+        format.html { redirect_to @user, notice: 'Please check your email to activate your account.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -50,9 +50,11 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
+    @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       if params[:images]
           params[:images].each do |image|
@@ -68,6 +70,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:id])
     @user.destroy
     flash[:success] = "User Deleted!"
     redirect_to users_url

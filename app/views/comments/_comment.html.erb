@@ -1,12 +1,11 @@
 <div class="flex-row-container">
 	<div class="flex-row-element commenter">
-		<% comment_user = comment.user%>
-		<%if comment_user.avatar%>
-			<%= image_tag(comment_user.avatar.displaypic.url(:small), alt: 'User DP')%>
+		<%if comment.user.avatar%>
+			<%= image_tag(comment.user.avatar.displaypic.url(:small), alt: 'User DP')%>
 		<%else%>
 			<%= image_tag('no_image_icon.jpg', alt: 'No DP', width: 64, height: 64)%>
 		<%end%> <br />
-		<%= link_to comment_user.name, comment_user %>
+		<%= link_to comment.user.name, comment.user %>
 	</div>
 
 	<div class="flex-row-element comment">
@@ -15,18 +14,24 @@
 
 	<div class="flex-row-element">
 		<% if logged_in? && (current_user.id == comment.user_id || current_user.admin?) %>
-			<%= link_to 'Edit', edit_comment_path(comment)%>
-			<%= link_to 'Delete', comment, method: :delete, data: { confirm: 'Are you sure?' }%>
+			<%= link_to edit_comment_path(comment) do%>
+				<span class="glyphicon glyphicon-pencil"></span>
+			<%end%>
+			<%= link_to comment, method: :delete, data: { confirm: 'Are you sure?' } do%>
+				<span class="glyphicon glyphicon-remove"></span>
+			<%end%>
 		<%end%>
 
 		<div id=<%= "comment-like-button-#{comment.id}" -%> class="like-button">
 		 	<% if logged_in? && (user_has_liked_entry(comment.id, "Comment") == false)%>
-		 		<%= form_for like, remote: true, class: 'like-form' do |f| %>
+
+				<%= form_for like, remote: true, class: 'like-form' do |f| %>
 		 			<%= f.hidden_field :likeable_id, :value => comment.id %>
 		 			<%= f.hidden_field :likeable_type, :value => Comment %>
 					<%= f.hidden_field :user_id, :value => current_user.id%>
 					<%= f.submit "Like", class: "btn btn-primary btn-sm" %>
 		 		<%end%>
+
 		 	<%elsif user_has_liked_entry(comment.id, "Comment") == true%>
 		 		<%= button_to 'Unlike', find_like(comment.id, "Comment"), method: :delete,
 		 		remote: true, class: 'btn btn-default btn-sm' %>

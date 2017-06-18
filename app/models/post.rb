@@ -8,9 +8,6 @@ class Post < ActiveRecord::Base
   has_many :pictures, as: :imageable, :dependent => :destroy
   has_many :likes, as: :likeable, :dependent => :destroy
 
-  delegate :name, :to => :user, :prefix => true
-  delegate :subforumname, :to => :subforum, :prefix => false
-
   validates :subforum_id, presence: true
   validates :user_id, presence: true
   validates :postname, presence: true
@@ -27,9 +24,6 @@ class Post < ActiveRecord::Base
   scope :old_posts, -> { where("(posts.created_at < ?)",
     Time.now - 2.hours) }
 
-  #def last_comment_user
-  #  comments.last.get_user
-  #end
 
   def self.trending
     trending_posts = Post.where("(posts.created_at > ?)",
@@ -48,5 +42,5 @@ class Post < ActiveRecord::Base
   def toggle_sticky
     sticky ? update_attribute(:sticky, false) : update_attribute(:sticky, true)
   end
-  
+
 end
