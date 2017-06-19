@@ -5,11 +5,11 @@
 
 <% provide(:title, @post.postname) %>
 
-<div class="flex-column-container-centered">
+<div class="flex-column">
 
 	<!-- POST HEADER -->
 
-	<div class="post-header flex-column-element">
+	<div class="flex-column-element">
 		<h2>
 			<%= link_to subforum_posts_path(@post.subforum) do%>
 				<span class="glyphicon glyphicon-arrow-left"></span>
@@ -20,7 +20,7 @@
 
 	<!-- POST BODY -->
 
-	<div class="post-body flex-column-element flex-row-container">
+	<div class="flex-column-element bordered flex-row-container">
 
 		<!-- User + DP -->
 
@@ -35,7 +35,7 @@
 
 		<!-- Post Body + Likes -->
 
-		<div class="flex-row-element flex-column-container-no-margin">
+		<div class="flex-row-element">
 			<%= @post.content %>
 			<div class="post-pictures">
 		 	  <% @post.pictures.each do |picture| %>
@@ -101,13 +101,13 @@
 
 	<!-- Comments -->
 
-	<div class="comments flex-column-container-no-margin flex-column-element">
-		<div class="flex-column-element flex-row-container">
+	<div class="flex-column-element flex-list">
+		<div class="flex-list-element flex-row-container">
 			<div class="flex-row-element"> User </div>
 			<div class="flex-row-element"> Comment </div>
 			<div class="flex-row-element"></div>
 		</div>
-		<div class="flex-column-element flex-column-container-no-margin" id=<%= "post-" + "#{@post.id}" + "-comments" %>>
+		<div class="flex-list-element flex-list" id=<%= "post-" + "#{@post.id}" + "-comments" %>>
 			<% @comments.each do |comment| %>
 				<%= render partial: comment, locals: {like: Like.new}%>
 			<%end%>
@@ -119,7 +119,7 @@
 
 	<!-- Comment Creation -->
 
-	<div class="post-options flex-column-element">
+	<div class="flex-column-element">
 	  <% if logged_in? %>
 		   	<%= link_to 'Comment', new_post_comment_path(@post), remote: true %>
 		<%end%>

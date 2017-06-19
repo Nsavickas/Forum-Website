@@ -5,8 +5,8 @@ class StaticPagesController < ApplicationController
   end
 
   def planetside2
-    #@subforum = Subforum.find(1) || nil
-    @posts = @subforum ? @subforum.posts : nil
+    @forum = Forum.find_by(forumname: 'Planetside 2')
+    #@posts = @subforum ? @subforum.posts : nil
     @trending_posts = Post.trending
   end
 

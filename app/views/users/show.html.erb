@@ -1,8 +1,8 @@
 <% provide(:title, @user.name) %>
 
 <div class="flex-sidebar-content">
-  <div class="user-sidebar flex-row-element flex-column-container-no-margin">
-    <div class="flex-column-element">
+  <div class="flex-sidebar flex-list">
+    <div class="flex-list-element">
       <%if @user.avatar%>
         <% if current_user == @user%>
           <%= link_to (image_tag @user.avatar.displaypic.url(:med), alt: 'Edit DP'), edit_avatar_path(@avatar)%>
@@ -21,7 +21,7 @@
 
     </div>
 
-    <div class="friendship-options flex-column-element">
+    <div class="friendship-options flex-list-element">
       <%if @friendship %>
         <%if @friendship.accepted?%>
           <h2><%=button_to 'Unfriend', @friendship, method: :delete,
@@ -39,34 +39,36 @@
       <%end%>
     </div>
 
-    <div class="flex-column-element">
-      <%= link_to 'Friends', user_friendships_path(@user), class: "btn btn-primary btn-sm"%>
-      <%= link_to 'Pictures', user_pictures_path(@user), class: "btn btn-primary btn-sm"%>
-      <%= link_to 'Notifications', user_notifications_path(@user), class: "btn btn-primary btn-sm"%>
-
-      <p>Recent Activity:</p>
-      <div class="user-nav">
-      <input value="Posts" type="button" id="recent-posts-btn" class="btn btn-primary btn-sm"> <br />
-      <input value="Comments" type="button" id="recent-comments-btn" class="btn btn-primary btn-sm"> <br />
-      <input value="Likes" type="button" id="recent-likes-btn" class="btn btn-primary btn-sm">
-      </div>
+    <div class="flex-list flex-list-element">
+      <%= link_to 'Friends', user_friendships_path(@user), class: "btn btn-primary btn-sm flex-list-element"%>
+      <%= link_to 'Pictures', user_pictures_path(@user), class: "btn btn-primary btn-sm flex-list-element"%>
+      <%= link_to 'Notifications', user_notifications_path(@user), class: "btn btn-primary btn-sm flex-list-element"%>
     </div>
+
+    <div class="flex-list flex-list-element">
+      <p class="flex-list-element">Recent Activity:</p>
+      <input value="Posts" type="button" id="recent-posts-btn" class="btn btn-primary btn-sm flex-list-element">
+      <input value="Comments" type="button" id="recent-comments-btn" class="btn btn-primary btn-sm flex-list-element">
+      <input value="Likes" type="button" id="recent-likes-btn" class="btn btn-primary btn-sm flex-list-element">
+    </div>
+
+
   </div>
 
-  <div class="user-content flex-row-element flex-column-container">
-		<div id="recent-posts" class="hide flex-column-element">
+  <div class="flex-content">
+		<div id="recent-posts" class="hide">
 			<% if @user_posts %>
 				<%= render 'recent_posts'%>
 				<%= paginate @user_posts%>
 			<%end%>
 		</div>
-		<div id="recent-comments" class="hide flex-column-element">
+		<div id="recent-comments" class="hide">
 			<% if @user_comments %>
 				<%= render 'recent_comments'%>
 				<%= paginate @user_comments%>
 			<%end%>
 		</div>
-		<div id="recent-likes" class="hide flex-column-element">
+		<div id="recent-likes" class="hide">
 			<% if @user_likes %>
 				<%= render 'recent_likes'%>
 				<%= paginate @user_likes%>

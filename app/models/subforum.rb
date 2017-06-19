@@ -8,6 +8,10 @@ class Subforum < ActiveRecord::Base
     Post.where('subforum_id = ?', self.id).last
   end
 
+  def self.find_by_name(forumname)
+    Subforum.where('forumname = ?', forumname)
+  end
+
   validates :subforumname, presence: true
   validates :forum_id, presence: true
 

@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @avatar = @user.avatar
     @friendship = Friendship.get_mutual_friendship(@user.id, current_user.id).first
     @user_posts = @user.posts.page(params[:page]).per(10)
-    @user_comments = @user.comments.page(params[:page]).per(10)
+    @user_comments = @user.comments.order("created_at DESC").page(params[:page]).per(10)
     @user_likes = @user.likes.page(params[:page]).per(10)
   end
 
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
           end
       end
 
-      flash[:success] = "Profile updated"
+      flash[:success] = "Profile Updated!"
       redirect_to @user
     else
       render 'edit'
@@ -81,10 +81,6 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password,
                                    :password_confirmation, :pictures)
-    end
-
-    def get_user
-      @user = User.find(params[:id])
     end
 
     def logged_in_user

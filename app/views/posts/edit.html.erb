@@ -21,14 +21,6 @@
     </div>
 
     <div class="flex-column-element">
-      <%if current_user.admin?%>
-      	<%= f.label :sticky, 'Sticky this post?'%>
-      	<%= f.check_box :sticky%>
-      	<br />
-      <%end%>
-    </div>
-
-    <div class="flex-column-element">
       <%= f.submit "Save Changes", class: "btn btn-primary" %>
     </div>
   <% end %>

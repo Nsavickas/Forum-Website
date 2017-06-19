@@ -1,7 +1,7 @@
 
 <div>
 	<h1>Recent comments by <%=@user.name%></h1>
-	
+
 <table class="recent_posts_table">
   <thead>
     <tr>
@@ -21,7 +21,22 @@
       </tr>
 		<%end%>
   </tbody>
-</table>  
+</table>
 	
 
+</div>
+
+<div class="flex-list">
+	<div class="flex-list-element flex-post-row">
+		<div class="flex-row-element"> Target </div>
+		<div class="flex-row-element"> Comment </div>
+		<div class="flex-row-element"> Date </div>
+	</div>
+	<% @user_comments.each do |comment|%>
+		<div class="flex-list-element flex-post-row">
+			<div class="flex-row-element"> <%= link_to comment.post.postname, comment.post %> </div>
+			<div class="flex-row-element"> <%= comment.comment_content %> </div>
+			<div class="flex-row-element"> <%= distance_of_time_in_words_to_now comment.created_at %> ago </div>
+		</div>
+	<%end%>
 </div>
