@@ -1,15 +1,15 @@
-<li class="user_info">
+<div class="flex-list-element">
   <%#= gravatar_for user, size: 50 %>
   <%if user.avatar != nil%>
   	<%= image_tag user.avatar_displaypic.url(:med)%>
   <%else%>
-  	<%= image_tag 'no_image_icon.jpg'%>
+  	<%= image_tag 'no_image_icon.jpg', width: 200, height: 200 %>
   <%end%>
-  
+
   <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %>
 
-</li>
+</div>

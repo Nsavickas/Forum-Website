@@ -1,0 +1,16 @@
+<div class="form-wrapper">
+  <%= form_for(@comment) do |f| %>
+
+    <%= f.hidden_field :post_id, :value => @post.id %>
+  	<%= f.hidden_field :user_id, :value => current_user.id %>
+
+    <div class="flex-column-element">
+      <%= f.label :comment_content, 'Content' %>
+      <%= f.text_field :comment_content, class: 'form-control' %>
+    </div>
+
+    <div class="flex-column-element">
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

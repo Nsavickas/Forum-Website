@@ -13,12 +13,10 @@ class PostsController < ApplicationController
 
   def toggle_sticky
     @post = Post.find(params[:post_id])
-    @subforum = @post.subforum
 
     respond_to do |format|
       if @post.toggle_sticky
-        flash[:success] = 'Post #{@post.sticky}'
-        format.html { redirect_to subforum_posts_path(@subforum, @post) }
+        format.html { redirect_to subforum_posts_path(@post.subforum, @post) }
         format.js {}
         format.json { render :index, status: :updated, location: @post }
       else

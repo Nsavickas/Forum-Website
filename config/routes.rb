@@ -51,6 +51,8 @@ Rails.application.routes.draw do
     resources :posts
   end
 
+  get 'comments/:id/new' => 'posts#new', as: :quote_comment
+
   resources :posts, shallow: true do
     resources :comments
     resources :pictures

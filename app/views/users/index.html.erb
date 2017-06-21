@@ -1,15 +1,17 @@
 <% provide(:title, 'All users') %>
 
-<div class="user-search">
-  <h2>Users</h1>
-
-  <%= form_tag users_path, :method => 'get', :id => 'users_search' do %>
-      <%= text_field_tag :search, params[:search], class: 'form-control' %>
-      <%= submit_tag "Search", :name => nil, class: 'btn' %>
-  <% end %>
+<div class="flex-header-footer-body">
+  <div class="flex-header">
+    <h2>Users</h2>
+    <%= form_tag users_path, :method => 'get', :id => 'users_search' do %>
+        <%= text_field_tag :search, params[:search], class: 'form-control' %>
+        <%= submit_tag "Search", :name => nil, class: 'btn btn-default' %>
+    <% end %>
+  </div>
+  <div class="flex-content flex-list">
+  		<%= render @users%>
+  </div>
+  <div class="flex-footer">
+      <%= paginate @users %>
+  </div>
 </div>
-
-<ul class="users">
-		<%= render @users%>
-    <%= paginate @users %>
-</ul>

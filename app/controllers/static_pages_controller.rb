@@ -6,11 +6,14 @@ class StaticPagesController < ApplicationController
 
   def planetside2
     @forum = Forum.find_by(forumname: 'Planetside 2')
-    #@posts = @subforum ? @subforum.posts : nil
-    @trending_posts = Post.trending
+    @trending_posts = Post.getTrendingPosts(@forum.id)
+    @important_posts = Post.getImportantPosts(@forum.id)
   end
 
   def nazizombies
+    @forum = Forum.find_by(forumname: 'Nazi Zombies')
+    @trending_posts = Post.getTrendingPosts(@forum.id)
+    @important_posts = Post.getImportantPosts(@forum.id)
   end
 
   def about

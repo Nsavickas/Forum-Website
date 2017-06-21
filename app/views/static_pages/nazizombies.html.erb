@@ -1,7 +1,26 @@
 
-<div class="planetsideheader">
-	<h1>Welcome to the Nazi Zombies division of the Negus Gaming Clan.</h1>
-	<div class="planetsidenav">
-		<%= link_to "Visit the Forums", forum_subforums_path(2), class: "btn btn-md btn-primary" %>
+<div class="flex-column">
+	<h2 class="flex-column-element"> Welcome to the Nazi Zombies division of the Negus Gaming Clan. </h2>
+
+	<div class="flex-column-element">
+		<%= link_to "Visit the Forums", forum_subforums_path(@forum.id), class: "btn btn-md btn-primary" %>
+	</div>
+
+	<div class="flex-column-element">
+		<h2>Recent Posts</h2> <hr />
+		<% @trending_posts.order("created_at DESC").each do |post| %>
+			<strong><%= link_to post.postname, post%></strong>
+			<p><%= post.content%> Posted: <%= distance_of_time_in_words_to_now post.created_at%></p>
+			<hr />
+		<%end%>
+	</div>
+
+	<div class="flex-column-element">
+		<h2>Trending Posts</h2> <hr />
+		<% @important_posts.each do |post| %>
+			<strong><%= link_to post.postname, post%></strong>
+			<p><%= post.content%> Posted: <%= distance_of_time_in_words_to_now post.created_at%></p>
+			<hr />
+		<%end%>
 	</div>
 </div>
