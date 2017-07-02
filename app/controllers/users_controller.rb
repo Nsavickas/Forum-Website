@@ -9,8 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @avatar = @user.avatar
-    @friendship = Friendship.get_mutual_friendship(@user.id, current_user.id).first
+    @friendship = Friendship.getFriendshipStatus(@user.id, current_user.id).first
     @user_posts = @user.posts.page(params[:page]).per(10)
     @user_comments = @user.comments.order("created_at DESC").page(params[:page]).per(10)
     @user_likes = @user.likes.page(params[:page]).per(10)

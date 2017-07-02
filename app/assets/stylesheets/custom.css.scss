@@ -85,8 +85,30 @@ a {
 }
 
 //used with 'flex-gallery-row' to create a gallery-style layout
-.flex-gallery-column {
+.flex-gallery {
+  @extend .flex-column;
+  justify-content: flex-start;
+  padding: 10px;
 
+  .flex-gallery-row {
+    @extend .flex-row;
+    padding: 1% 0% 1% 0%;
+
+    .flex-row-element {
+      padding: 0px 5px 0px 5px;
+    }
+  }
+}
+
+.flex-gallery-adaptive {
+  padding: 10px;
+  @extend .flex-row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  .flex-gallery-element {
+    padding: 0px 5px 0px 5px;
+  }
 }
 
 /*
@@ -127,9 +149,41 @@ a {
   }
 }
 
-//used with 'flex-gallery-column' to create a gallery-style layout
-.flex-gallery-row {
+//used to create layout where multiple smaller images wrap-around a larger image
+.flex-wrap-around {
 
+}
+
+.ns-navbar {
+  padding: 10px;
+  a {
+    color: #747474;
+  }
+  a:hover {
+    color: darken(#747474, 100%);
+  }
+}
+
+.flex-navbar {
+  @extend .flex-row;
+  justify-content: space-between;
+  //border: 1px solid #c6c6c6; //dark gray1
+  //border-radius: 5px;
+  //background-color: #f0f0f0; // light gray1
+
+  .flex-nav-header {
+    flex: 20;
+    @extend .ns-navbar;
+  }
+
+  .flex-nav-element {
+    flex: 10;
+    //@extend .ns-navbar;
+  }
+}
+
+.nav-selected {
+  opacity: 0.75;
 }
 
 
@@ -139,6 +193,7 @@ a {
 
 .flex-row-container {
   width: 100%;
+  padding: 10px 0px 10px 0px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -146,7 +201,7 @@ a {
 }
 
 .flex-row-element {
-  padding: 5px;
+  padding: 0px 5px 0px 5px;
 }
 
 .flex-column-element {
@@ -271,17 +326,22 @@ div {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: stretch;
   padding: 1%;
-  //width: 60%;
-  //margin-left: auto;
-  //margin-right: auto;
+
   form {
     width: 50%;
   }
+
   input {
     width: 100%;
   }
+}
+
+button.transparent {
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 
 /*input, textarea, select, .uneditable-input {

@@ -27,18 +27,21 @@
 		<%end%>
 
 		<div id=<%= "comment-like-button-#{comment.id}" -%> class="like-button">
-		 	<% if logged_in? && (user_has_liked_entry(comment.id, "Comment") == false)%>
+		 	<% if logged_in? && !(user_has_liked_entry(comment.id, "Comment"))%>
 
-				<%= form_for like, remote: true, class: 'like-form' do |f| %>
+				<%= form_for like, remote: true do |f| %>
 		 			<%= f.hidden_field :likeable_id, :value => comment.id %>
 		 			<%= f.hidden_field :likeable_type, :value => Comment %>
 					<%= f.hidden_field :user_id, :value => current_user.id%>
-					<%= f.submit "Like", class: "btn btn-primary btn-sm" %>
+					<%= button_tag(type: 'submit', class: "transparent", id: 'like-submit') do %>
+					  <span class="glyphicon glyphicon-thumbs-up"></span>
+					<% end %>
 		 		<%end%>
 
 		 	<%elsif user_has_liked_entry(comment.id, "Comment") == true%>
-		 		<%= button_to 'Unlike', find_like(comment.id, "Comment"), method: :delete,
-		 		remote: true, class: 'btn btn-default btn-sm' %>
+		 		<%= link_to find_like(comment.id, "Comment"), method: :delete, remote: true do %>
+					<span class="glyphicon glyphicon-thumbs-down"></span>
+				<%end%>
 		 	<%end%>
 		</div>
 

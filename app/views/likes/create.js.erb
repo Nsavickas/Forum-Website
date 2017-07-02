@@ -4,8 +4,7 @@
 	$("#post-" + <%=j @like.likeable_id.to_s %> + "-score").html("Score: " + <%=j get_score(@like.likeable_id, @like.likeable_type).to_s %>);
 
 	$("#post-like-button-" + <%=j @like.likeable_id.to_s%>)
-	.html("<%= escape_javascript(button_to 'Unlike', find_like(@like.likeable_id, @like.likeable_type), method: :delete,
-	remote: true, class: 'btn btn-default btn-sm') %>");
+	.html("<%= escape_javascript(link_to find_like(@like.likeable_id, @like.likeable_type), method: :delete, remote: true)%>");
 
 <%else%>
 
@@ -14,6 +13,5 @@
 	$("#comment-" + <%=j @like.likeable_id.to_s %> + "-score").html("Score: " + <%=j get_score(@like.likeable_id, @like.likeable_type).to_s %>);
 
 	$("#comment-like-button-" + <%=j @like.likeable_id.to_s%>)
-	.html("<%= escape_javascript(button_to 'Unlike', find_like(@like.likeable_id, @like.likeable_type), method: :delete,
-	remote: true, class: 'btn btn-default btn-sm') %>");
+	.html("<%= escape_javascript(link_to find_like(@like.likeable_id, @like.likeable_type), method: :delete, remote: true) %>");
 <%end%>

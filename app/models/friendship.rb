@@ -2,36 +2,41 @@ class Friendship < ActiveRecord::Base
   belongs_to :friender, class_name: "User", :foreign_key => :friender_id
   belongs_to :friended, class_name: "User", :foreign_key => :friended_id
   has_many :notifications, as: :notifiable, dependent: :destroy
-  
-  delegate :name, :to => :friender, :prefix => true
-  delegate :name, :to => :friended, :prefix => true
-  delegate :avatar_displaypic, :to => :friender, :prefix => true
-  delegate :avatar_displaypic, :to => :friended, :prefix => true
-  
+
   validates :friender_id, presence: true
   validates :friended_id, presence: true
-  
+
   scope :accepted, -> {where(accepted: true)}
   scope :pending, -> {where(accepted: false)}
-  
-  def self.get_friender_friendships(user)
-    where("friender_id = :user_id", {user_id: user.id})
+
+
+  ################## CLASS METHODS ###################
+
+  #returns Friendships where 'user_id' is the User that initiated the Friend Request
+  def self.getOutgoingFriendships(user_id)
+    where("friender_id = :user_id", {user_id: user_id})
   end
-  
-  def self.get_friended_friendships(user)
-    where("friended_id = :user_id", {user_id: user.id})
+
+  #returns Friendships where 'user_id' is the User that received the Friend Request
+  def self.getIncomingFriendships(user_id)
+    where("friended_id = :user_id", {user_id: user_id})
   end
-  
-  def self.get_mutual_friendship(user_id, current_user_id)
-    where('friended_id = ? AND friender_id = ? OR friended_id = ? AND friender_id = ?', 
-    user_id, current_user_id, current_user_id, user_id)
+
+  #returns all Friendships that involve 'user_id'
+  def self.getMutualFriendships(user_id)
+    where('friended_id = :user_id OR friender_id = :user_id', {user_id: user_id})
+    #where('friended_id = ? AND friender_id = ? OR friended_id = ? AND friender_id = ?', user_id, current_user_id, current_user_id, user_id)
   end
-  
-  def get_friend(current_user_id)
-    if friender_id == current_user_id
-      @friended_user = friended
-    else
-      @friended_user = friender
-    end 
+
+  #returns Friendship between specified Users (mainly to display AddFriend vs. RemoveFriend vs. AcceptFriend)
+  def self.getFriendshipStatus(user1, user2)
+    where('friended_id = :user1 AND friender_id = :user2 OR friended_id = :user2 AND friender_id = :user1', {user1: user1, user2: user2})
+  end
+
+  ################ INSTANCE METHODS ##################
+
+  #returns the Friend of 'user_id' for a given Friendship
+  def getFriend(user_id)
+    friender_id == user_id ? friended : friender
   end
 end

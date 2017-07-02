@@ -2,14 +2,14 @@
 <div class="flex-list">
 	<div class="flex-list-element flex-post-row">
 		<div class="flex-row-element"> Target </div>
-		<div class="flex-row-element"> Comment </div>
+		<div class="flex-row-element"> Body </div>
 		<div class="flex-row-element"> Date </div>
 	</div>
-	<% @user_comments.each do |comment|%>
+	<% @user_posts.each do |post|%>
 		<div class="flex-list-element flex-post-row">
-			<div class="flex-row-element"> <%= link_to comment.post.postname, comment.post %> </div>
-			<div class="flex-row-element"> <%= comment.comment_content %> </div>
-			<div class="flex-row-element"> <%= distance_of_time_in_words_to_now comment.created_at %> ago </div>
+			<div class="flex-row-element"> <%= link_to post.postname, post %> </div>
+			<div class="flex-row-element"> <%= post.content %> </div>
+			<div class="flex-row-element"> <%= distance_of_time_in_words_to_now post.created_at %> ago </div>
 		</div>
 	<%end%>
 </div>

@@ -1,16 +1,14 @@
 
 <div class="flex-list">
-	<h2>Liked Posts</h2>
-	<ul>
-		<% @user_likes.liked_posts.each do |like|%>
-				<li><%= @user.name%> liked <%= link_to like.likeable.postname, post_path(like.likeable_id)%></li>
-		<%end%>
-	</ul>
+	<% @user_likes.liked_posts.each do |like|%>
+		<div class="flex-list-element">
+			<%= @user.name%> liked <%= link_to like.likeable.postname, post_path(like.likeable_id)%>
+		</div>
+	<%end%>
 
-	<h2>Liked Comments</h2>
-	<ul>
-		<% @user_likes.liked_comments.each do |like|%>
-				<li><%= @user.name%> liked a comment in <%= link_to like.likeable.post.postname, post_path(like.likeable.post)%></li>
-		<%end%>
-	</ul>
+	<% @user_likes.liked_comments.each do |like|%>
+		<div class="flex-list-element">
+			<%= @user.name%> liked a comment in <%= link_to like.likeable.post.postname, post_path(like.likeable.post)%>
+		</div>
+	<%end%>
 </div>

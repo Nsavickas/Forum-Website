@@ -93,20 +93,9 @@
 		</div>
 	</div>
 
-	<!-- Comment Creation -->
-
-	<div class="new-comment">
-
-	</div>
-
 	<!-- Comments -->
 
 	<div class="flex-column-element flex-list">
-		<div class="flex-list-element flex-row-container">
-			<div class="flex-row-element"> User </div>
-			<div class="flex-row-element"> Comment </div>
-			<div class="flex-row-element"></div>
-		</div>
 		<div class="flex-list-element flex-list" id=<%= "post-" + "#{@post.id}" + "-comments" %>>
 			<% @comments.each do |comment| %>
 				<%= render partial: comment, locals: {like: Like.new}%>
@@ -118,6 +107,10 @@
 	</div>
 
 	<!-- Comment Creation -->
+
+	<div class="new-comment">
+
+	</div>
 
 	<div class="flex-column-element">
 	  <% if logged_in? %>

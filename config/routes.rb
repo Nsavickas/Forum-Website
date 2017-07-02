@@ -63,9 +63,6 @@ Rails.application.routes.draw do
 
   resources :comments
 
-  resources :items, shallow: true do
-    resources :pictures
-  end
 
   resources :pictures, only: [:index]
 

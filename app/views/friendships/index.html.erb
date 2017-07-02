@@ -1,55 +1,47 @@
 <% provide(:title, @user.name + "'s Friendships") %>
-<div class="planetsideheader">
-	<h1><%=@user.name%>'s Friendships</h1>
-	
-	<div class="friendship-nav">
-		<input value="Mutual Friends" type="button" id="mutual-friends-btn" class="btn btn-primary btn-sm">
-		<input value="Incoming Friend Requests" type="button" id="incoming-requests-btn" class="btn btn-primary btn-sm">
-		<input value="Outgoing Friend Requests" type="button" id="outgoing-requests-btn" class="btn btn-primary btn-sm">
-	</div>
-</div>
+<div class="flex-header-footer-body">
+	<div class="flex-header">
+		<h2>Your Friendships</h2>
 
-<div class="friend-container">
-	<div id="mutual-friends">
-		<h2>Mutual Friendships</h2>
-		<% @accepted_friended_friendships.each_slice(3) do |row|%>
-			<div class="row">
-				<%row.each do |friendship|%>
-					<%= render partial: 'friender', locals: {friendship: friendship}%>
-				<%end%>
-			</div>
-		<%end%>
-		<% @accepted_friender_friendships.each_slice(3) do |row|%>		
-			<div class="row">
-					<%row.each do |friendship|%>
-						<%= render partial: 'friended', locals: {friendship: friendship}%>
-					<%end%>
-			</div>
-		<%end%>
-		<div id="new-friends">
-			
+		<div class="flex-column-element flex-navbar">
+			<input value="Mutual Friends" type="button" id="mutual-friends-btn" class="btn btn-primary flex-nav-element">
+			<input value="Incoming Friend Requests" type="button" id="incoming-requests-btn" class="btn btn-primary flex-nav-element">
+			<input value="Outgoing Friend Requests" type="button" id="outgoing-requests-btn" class="btn btn-primary flex-nav-element">
 		</div>
 	</div>
-	
-	<div id="outgoing-requests" class="hide">
-		<h2>Pending Outgoing-Friendships</h2>
-		<% @pending_outgoing_friendships.each_slice(3) do |row|%>
-			<div class="row">
-					<%row.each do |friendship|%>
-						<%= render partial: 'friended', locals: {friendship: friendship}%>		
-					<%end%>
-			</div>	
-		<%end%>
-	</div>
-	
-	<div id="incoming-requests" class="hide">
-		<h2>Pending Incoming-Friendships</h2>
-			<% @pending_incoming_friendships.each_slice(3) do |row|%>
+
+	<div class="flex-content">
+		<div id="mutual-friends">
+			<div class="flex-gallery-adaptive">
+				<% @friends.each do |f|%>
+					<div class="flex-gallery-element">
+						<%= render partial: 'friend', locals: {friend: f}%>
+					</div>
+				<%end%>
+			</div>
+			<div id="new-friends">
+
+			</div>
+		</div>
+
+		<div id="outgoing-requests" class="hide">
+			<% @outgoingFriendships.each_slice(3) do |row|%>
 				<div class="row">
 						<%row.each do |friendship|%>
-							<%= render partial: 'accept_friender', locals: {friendship: friendship}%>
+							<%= render partial: 'friended', locals: {friendship: friendship}%>
 						<%end%>
-				</div>	
+				</div>
 			<%end%>
+		</div>
+
+		<div id="incoming-requests" class="hide">
+				<% @incomingFriendships.each_slice(3) do |row|%>
+					<div class="row">
+							<%row.each do |friendship|%>
+								<%= render partial: 'accept_friender', locals: {friendship: friendship}%>
+							<%end%>
+					</div>
+				<%end%>
+		</div>
 	</div>
 </div>

@@ -1,7 +1,7 @@
 <div class="flex-list-element">
   <%#= gravatar_for user, size: 50 %>
   <%if user.avatar != nil%>
-  	<%= image_tag user.avatar_displaypic.url(:med)%>
+  	<%= image_tag user.avatar.displaypic.url(:med)%>
   <%else%>
   	<%= image_tag 'no_image_icon.jpg', width: 200, height: 200 %>
   <%end%>
